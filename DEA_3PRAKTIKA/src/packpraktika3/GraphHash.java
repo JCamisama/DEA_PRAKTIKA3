@@ -8,6 +8,7 @@ import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
 import java.util.Iterator;
+import java.util.HashSet;
 
 
 public class GraphHash {
@@ -41,9 +42,8 @@ public class GraphHash {
 		 
 		 	1. Aktorerik eta pelikularik ez.
 		 	2. Aktoreen zerrenda beteta, pelikulena ez.
+		 	4. Aktore bakarra eta Pelikula bakarra.
 		 	3. Aktoreen zerrenda eta pelikulen zerrenda beteta.
-		 	
-		 	
 		 */
 		
 		
@@ -63,8 +63,8 @@ public class GraphHash {
 	    Zinematografikoa amaierakoa = pZine2;
 	    Zinematografikoa unekoa 	= hasierakoa;
 	    
-	    Stack<Zinematografikoa>	aztertuGabeak	=	new Stack<Zinematografikoa>();
-	    Queue<Zinematografikoa>	aztertuak		=	new LinkedList<Zinematografikoa>();
+	    Stack<Zinematografikoa>		aztertuGabeak		=	new Stack<Zinematografikoa>();
+	    HashSet<Zinematografikoa>	aztertuak			=	new HashSet<Zinematografikoa>();
 	    
 	    aztertuak.add(unekoa);
 	    aztertuGabeak.push(unekoa);
@@ -106,6 +106,20 @@ public class GraphHash {
 		return topatua;
 	}
 	
+	 private void prozesatu( Zinematografikoa pProzesatzekoa, Stack<Zinematografikoa> pAztertuGabeak, 
+				HashSet<Zinematografikoa> pAztertuak){
+
+
+		if( !pAztertuak.contains(pProzesatzekoa) ){
+		
+		pAztertuGabeak.push(pProzesatzekoa);
+		pAztertuak.add(pProzesatzekoa);
+		
+		}
+
+
+	 }
+	
 	
 	
 	///********************************************FROGAK***********************************///
@@ -134,18 +148,5 @@ public class GraphHash {
 	
 	
 	
-	 private void prozesatu( Zinematografikoa pProzesatzekoa, Stack<Zinematografikoa> pAztertuGabeak, 
-			 				Queue<Zinematografikoa> pAztertuak){
-		  
-		 
-		 if( !pAztertuak.contains(pProzesatzekoa) ){
-			 
-			 pAztertuGabeak.push(pProzesatzekoa);
-			 pAztertuak.add(pProzesatzekoa);
-			 
-		 }
-		 
-
-	  }
 
 }
