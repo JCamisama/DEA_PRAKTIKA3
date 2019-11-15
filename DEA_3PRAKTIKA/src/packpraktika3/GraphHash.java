@@ -59,6 +59,24 @@ public class GraphHash {
 	
 	public boolean konektatuta(Zinematografikoa pZine1, Zinematografikoa pZine2){
 		
+		//Aurre-baldintza:	Aktore edo Pelikula motako instantzia izango dute parametroak, eta desberdinak izango dira.
+		/*Post-baldinta:	Beraien artean tarteko pelikula eta aktoreak badaude True bueltatuko du,
+							bestela False.
+		//Kostua: O(n+m)
+			
+			/*Proba kasuak:
+			 
+			 	1. Horietako batek konexiorik ez izatea: Pelikula bat aktorerik gabe edo
+			 	   txertatu den aktore berria pelikularik ez izatea. (False)
+			 	2. Bi elementuek konexiorik ez izatea. (False)
+			 	3. Bi elementuek konexioak izatea, baina elkarren artean konexiorik ez
+			 	   egotea (False)
+			 	4. Elementuen artean konexio bakarra (izen berdineko pelikula eta aktorea) (True)
+			 	5. Elementuen artean konexio bakarra (izen ezberdinekoak) (True)
+			 	6. Elementuen artean bi baino gehiagoko konexioa (izen berdineko pelikula eta aktorea) (True).
+			 	7. Elementuen artean bi baino gehiagoko konexioa (izen ezberdinekoak) (True).
+			 */
+		
 		Zinematografikoa hasierakoa = pZine1;
 	    Zinematografikoa amaierakoa = pZine2;
 	    Zinematografikoa unekoa 	= hasierakoa;
@@ -96,8 +114,6 @@ public class GraphHash {
 	    			
 	    			unekoarenZerrendakoa	= itr.next();
 	    			this.prozesatu(unekoarenZerrendakoa, aztertuGabeak, aztertuak);
-	    			
-	    			
 	    		}
 	    	}
 
