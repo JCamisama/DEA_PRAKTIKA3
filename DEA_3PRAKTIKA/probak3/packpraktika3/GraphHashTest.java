@@ -193,5 +193,28 @@ public class GraphHashTest {
 
 		
 	}
+	
+	@Test
+	public void testKonektatuta() {
+		
+		
+		/*Proba kasuak:
+		 
+	 	1. Horietako batek konexiorik ez izatea: Pelikula bat aktorerik gabe edo
+	 	   txertatu den aktore berria pelikularik ez izatea. (False)
+	 	2. Bi elementuek konexiorik ez izatea. (False)
+	 	3. Bi elementuek konexioak izatea, baina elkarren artean konexiorik ez
+	 	   egotea (False)
+	 	4. Elementuen artean konexio bakarra (izen berdineko pelikula eta aktorea) (True)
+	 	5. Elementuen artean konexio bakarra (izen ezberdinekoak) (True)
+	 	6. Elementuen artean bi baino gehiagoko konexioa (izen berdineko pelikula eta aktorea) (True).
+	 	7. Elementuen artean bi baino gehiagoko konexioa (izen ezberdinekoak) (True).
+	 */
+		
+		
+		
+		
+		
+	}
 
 }
