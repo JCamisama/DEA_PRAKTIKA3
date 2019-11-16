@@ -43,8 +43,9 @@ public class GraphHash {
 		 
 		 	1. Aktorerik eta pelikularik ez.
 		 	2. Aktoreen zerrenda beteta, pelikulena ez.
+		 	3. Aktoreen zerrenda hutsa, pelikulena beteta.
 		 	4. Aktore bakarra eta Pelikula bakarra.
-		 	3. Aktoreen zerrenda eta pelikulen zerrenda beteta.
+		 	5. Aktoreen zerrenda eta pelikulen zerrenda beteta.
 		 */
 		
 		
@@ -147,6 +148,11 @@ public class GraphHash {
 		
 		nireGrafoa = null;
 	}
+	
+	public int size(){ //Frogak egiterakoan grafoaren elementu kopurua zein den jakiteko.
+		
+		return this.grafoa.size();
+	}
 	public static void main(String[] args){
 		
 		 IrakurketakEtaIdazketak cHau = new IrakurketakEtaIdazketak(); //Klase honetako metodoei deia egiteko: claseHau
@@ -167,10 +173,24 @@ public class GraphHash {
 		 System.out.println("\nPelikula kopurua: " + PelikulaGuztiak.getNirePelikulak().luzera());
 		 
 		 
+		 
 		 gHau.grafoaSortu(AktoreGuztiak.getNireAktoreak(), PelikulaGuztiak.getNirePelikulak());
+		 System.out.println("\nGrafoaren nodo kopurua: " + gHau.size()+"\n\n");
+		 gHau.grafoaInprimatu();
 	}
 	
 	
+	public void grafoaInprimatu(){
+		
+		int i = 1;
+		for (Zinematografikoa s: this.grafoa.keySet()){
+			System.out.print("Elementua: " + i++ + " " + s.getIzena() + " --> ");
+			for (Zinematografikoa k : this.grafoa.get(s)){
+				System.out.print(k.getIzena() + " ### ");
+			} 
+			System.out.println();
+		}
+	}
 	
 
 }
