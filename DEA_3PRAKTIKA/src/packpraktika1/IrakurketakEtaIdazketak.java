@@ -51,10 +51,10 @@ public class IrakurketakEtaIdazketak {
 	
 	
 	/************************************FITXATEGIAREN IRAKURKETA******************************************************/
-	public void fitxategiaIreki(){
+	public void fitxategiaIreki(String pIrekitzekoa){
 		
 		//String filename = "Fitxategiak/FilmakAktoreak.txt";
-		String filename = "Fitxategiak/Murriztuta.txt";
+		String filename = pIrekitzekoa;
 		try{
 			
 			eskanerHau = new Scanner(new File(filename));

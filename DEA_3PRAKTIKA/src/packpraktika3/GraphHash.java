@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
+
 import java.util.Iterator;
 import java.util.HashSet;
 
@@ -81,18 +82,20 @@ public class GraphHash {
 	    Zinematografikoa amaierakoa = pZine2;
 	    Zinematografikoa unekoa 	= hasierakoa;
 	    
-	    Stack<Zinematografikoa>		aztertuGabeak		=	new Stack<Zinematografikoa>();
+	    
+	    //Stack<Zinematografikoa>		aztertuGabeak		=	new Stack<Zinematografikoa>();
+	    Queue<Zinematografikoa>		aztertuGabeak		=	new LinkedList<Zinematografikoa>();
 	    HashSet<Zinematografikoa>	aztertuak			=	new HashSet<Zinematografikoa>();
 	    
 	    aztertuak.add(unekoa);
-	    aztertuGabeak.push(unekoa);
+	    aztertuGabeak.add(unekoa);
 	    
 	    boolean topatua		   = false;
 	    boolean instantziaBera = false; //Biak pelikulak edo biak aktoreak diren jakiteko
 	    
 	    while (!topatua && !aztertuGabeak.isEmpty()){
 	    	
-	    	unekoa = aztertuGabeak.pop();
+	    	unekoa = aztertuGabeak.remove();
 	    	
 	    	instantziaBera = unekoa.instantziaBerekoak(amaierakoa); //Izen berdina duten pelikula eta aktorea ekiditzeko.
 	    	
@@ -122,13 +125,13 @@ public class GraphHash {
 		return topatua;
 	}
 	
-	 private void prozesatu( Zinematografikoa pProzesatzekoa, Stack<Zinematografikoa> pAztertuGabeak, 
+	 private void prozesatu( Zinematografikoa pProzesatzekoa, Queue<Zinematografikoa>	 pAztertuGabeak, 
 				HashSet<Zinematografikoa> pAztertuak){
 
 
 		if( !pAztertuak.contains(pProzesatzekoa) ){
 		
-		pAztertuGabeak.push(pProzesatzekoa);
+		pAztertuGabeak.add(pProzesatzekoa);
 		pAztertuak.add(pProzesatzekoa);
 		
 		}
@@ -139,6 +142,11 @@ public class GraphHash {
 	
 	
 	///********************************************FROGAK***********************************///
+	 
+	public void erreseteatuFrogetan(){ //Frogak egiterakoan grafoa erreseteatu ahal izateko.
+		
+		nireGrafoa = null;
+	}
 	public static void main(String[] args){
 		
 		 IrakurketakEtaIdazketak cHau = new IrakurketakEtaIdazketak(); //Klase honetako metodoei deia egiteko: claseHau
@@ -147,10 +155,10 @@ public class GraphHash {
 		// boolean jarraitu	= true;
 
 		 int aukera;
-		 
+	//	 "Fitxategiak/Murriztuta.txt";
 		 System.out.println("\t\t\t*******FILMAK ETA AKTOREAK - PRAKTIKA 1*******\n");
 		 System.out.println("Filma eta pelikula guztiak irakurriko dira orain:\n\n ");
-		 cHau.fitxategiaIreki();
+		 cHau.fitxategiaIreki("Fitxategiak/Murriztuta.txt");
 		 cHau.fitxategiaIrakurri();
 		 cHau.fitxategiaItxi();
 		 
