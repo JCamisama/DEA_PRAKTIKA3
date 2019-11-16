@@ -9,12 +9,9 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 
-import packpraktika1.AktoreGuztiak;
-import packpraktika1.IrakurketakEtaIdazketak;
-import packpraktika1.PelikulaGuztiak;
-
 public class GraphHashTest {
 
+	Zinematografikoa aktore1, aktore2, peli1, peli2 = null;	
 	GraphHash gHau;
 	IrakurketakEtaIdazketak cHau;
 
@@ -22,12 +19,18 @@ public class GraphHashTest {
 	public void setUp() throws Exception {
 		
 		cHau		= new IrakurketakEtaIdazketak();
+		aktore1 = new Aktorea("Santa Clus");		
+		peli1 = new Pelikula("Popiloluta");
+		
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		
 		gHau.erreseteatuFrogetan();
+		aktore1 = null;		
+		peli1 = null;	
+			
 	}
 
 	@Test
@@ -200,16 +203,143 @@ public class GraphHashTest {
 		
 		/*Proba kasuak:
 		 
-	 	1. Horietako batek konexiorik ez izatea: Pelikula bat aktorerik gabe edo
-	 	   txertatu den aktore berria pelikularik ez izatea. (False)
-	 	2. Bi elementuek konexiorik ez izatea. (False)
-	 	3. Bi elementuek konexioak izatea, baina elkarren artean konexiorik ez
-	 	   egotea (False)
-	 	4. Elementuen artean konexio bakarra (izen berdineko pelikula eta aktorea) (True)
-	 	5. Elementuen artean konexio bakarra (izen ezberdinekoak) (True)
-	 	6. Elementuen artean bi baino gehiagoko konexioa (izen berdineko pelikula eta aktorea) (True).
-	 	7. Elementuen artean bi baino gehiagoko konexioa (izen ezberdinekoak) (True).
+	 	
+	 	
+	 	3. Elementuen artean konexio bakarra (izen berdineko pelikula eta aktorea) (True)
+	 	4. Elementuen artean konexio bakarra (izen ezberdinekoak) (True)
+	 	5. Elementuen artean bi baino gehiagoko konexioa (izen berdineko pelikula eta aktorea) (True).
+	 	6. Elementuen artean bi baino gehiagoko konexioa (izen ezberdinekoak) (True).
 	 */
+		
+		
+		
+		// 1. Horietako batek konexiorik ez izatea: Pelikula bat aktorerik gabe edo
+	 	//    txertatu den aktore berria pelikularik ez izatea. (False)
+		
+		 gHau = GraphHash.getNireGrafoa();
+		 
+		 System.out.println("\t\t\t*******1. Horietako batek konexiorik ez izatea: Pelikula bat aktorerik gabe edo\r\n" + 
+		 		"	 	//    txertatu den aktore berria pelikularik ez izatea. (False)*******\n");
+		 System.out.println("Filma eta pelikula guztiak irakurriko dira orain:\n\n ");
+		 cHau.fitxategiaIreki("Fitxategiak/Konektatuta.txt");
+		 cHau.fitxategiaIrakurri();
+		 cHau.fitxategiaItxi();
+		 
+		
+		 
+		 	//Aktoreak aktoreen zerrenda nagusira gehitzen
+		 AktoreGuztiak.getNireAktoreak().gehituAktorea((Aktorea)aktore1);
+		 
+		 
+		 	//Bilatu nahi dugun pelikula bilatzen
+		 peli2 =  PelikulaGuztiak.getNirePelikulak().pelikulaBilatu("Mitologia do submundo");
+		 Zinematografikoa peli3 =  PelikulaGuztiak.getNirePelikulak().pelikulaBilatu("Einsatz in 4 W nden");
+		 
+		 	//Bilatu nahi dugun aktorea bilatzen
+		 aktore2 =  AktoreGuztiak.getNireAktoreak().aktoreaBilatu("Nicholson, Sean ");
+		 
+		 
+		 	//Irakurritako aktore eta pelikula kopuruak adierazten
+		 System.out.println("\nAktore kopurua: " + AktoreGuztiak.getNireAktoreak().luzera());
+		 System.out.println("\nPelikula kopurua: " + PelikulaGuztiak.getNirePelikulak().luzera());
+		 
+		 
+		 
+		 gHau.grafoaSortu(AktoreGuztiak.getNireAktoreak(), PelikulaGuztiak.getNirePelikulak());
+		 System.out.println("\nGrafoaren nodo kopurua: " + gHau.size()+"\n\n\n\n");
+		 gHau.grafoaInprimatu();
+		 
+		 	//Pelikula erlaziorik ez eukitzea, baina aktoreak bai
+		 assertFalse(gHau.konektatuta(peli2, aktore2));
+		 
+		 
+		 	//Aktorea erlaziorik ez eukitzea, baina pelikulak bai
+		 assertFalse(gHau.konektatuta(aktore1, peli3));	 		 
+		 
+		 
+		 
+		//2. Bi elementuek konexioak izatea, baina elkarren artean konexiorik ez egotea (False)
+			
+		
+		 
+		 System.out.println("\t\t\t*******1. Horietako batek konexiorik ez izatea: Pelikula bat aktorerik gabe edo\r\n" + 
+		 		"	 	//    txertatu den aktore berria pelikularik ez izatea. (False)*******\n");
+			 
+		 	//Bilatu nahi dugun pelikula bilatzen
+		 peli2 =  PelikulaGuztiak.getNirePelikulak().pelikulaBilatu("Einsatz in 4 W nden");
+		 
+		 
+		 	//Bilatu nahi dugun aktorea bilatzen
+		 aktore2 =  AktoreGuztiak.getNireAktoreak().aktoreaBilatu("Bouffard");		 
+		 
+		 
+		 	//Bi elementuen artean konexiorik ez egotea
+		 assertFalse(gHau.konektatuta(peli2, aktore2));	 
+		 
+		 
+		 
+		 //3. Elementuen artean konexio bakarra (izen berdineko pelikula eta aktorea) (True)
+			
+		
+		 
+		 System.out.println("\t\t\t*******1. Horietako batek konexiorik ez izatea: Pelikula bat aktorerik gabe edo\r\n" + 
+		 		"	 	//    txertatu den aktore berria pelikularik ez izatea. (False)*******\n");
+			 
+		 	//Bilatu nahi dugun pelikula bilatzen
+		 peli2 =  PelikulaGuztiak.getNirePelikulak().pelikulaBilatu("Sergio Ramos");
+		 
+		 
+		 	//Bilatu nahi dugun aktorea bilatzen
+		 aktore2 =  AktoreGuztiak.getNireAktoreak().aktoreaBilatu("Sergio Ramos");		 
+		 
+		 
+		 	//Bi elementuen artean konexiorik ez egotea
+		 assertTrue(gHau.konektatuta(peli2, aktore2));	 
+		 
+		 
+		 
+		//4. Elementuen artean konexio bakarra (izen ezberdinekoak) (True)
+			
+		 
+		 
+		 System.out.println("\t\t\t*******1. Horietako batek konexiorik ez izatea: Pelikula bat aktorerik gabe edo\r\n" + 
+		 		"	 	//    txertatu den aktore berria pelikularik ez izatea. (False)*******\n");
+			 
+		 	//Bilatu nahi dugun pelikula bilatzen
+		 peli2 =  PelikulaGuztiak.getNirePelikulak().pelikulaBilatu("Universal Ninjas");
+		 
+		 
+		 	//Bilatu nahi dugun aktorea bilatzen
+		 aktore2 =  AktoreGuztiak.getNireAktoreak().aktoreaBilatu("Jonpor");		 
+		 
+		 
+		 	//Bi elementuen artean konexiorik ez egotea
+		 assertTrue(gHau.konektatuta(peli2, aktore2));	 
+		 
+		 
+		 
+		//5. Elementuen artean bi baino gehiagoko konexioa (izen berdineko pelikula eta aktorea) (True).
+			
+		 
+		 
+		 System.out.println("\t\t\t*******1. Horietako batek konexiorik ez izatea: Pelikula bat aktorerik gabe edo\r\n" + 
+		 		"	 	//    txertatu den aktore berria pelikularik ez izatea. (False)*******\n");
+			 
+		 	//Bilatu nahi dugun pelikula bilatzen
+		 peli2 =  PelikulaGuztiak.getNirePelikulak().pelikulaBilatu("Sergio Ramos1");
+		 
+		 
+		 	//Bilatu nahi dugun aktorea bilatzen
+		 aktore2 =  AktoreGuztiak.getNireAktoreak().aktoreaBilatu("Sergio Ramos1");		 
+		 
+		 
+		 	//Bi elementuen artean konexiorik ez egotea
+		 assertTrue(gHau.konektatuta(peli2, aktore2));	 
+		 
+		 
+		 
+		
+		
 		
 		
 		
