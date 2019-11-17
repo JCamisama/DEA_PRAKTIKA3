@@ -63,7 +63,7 @@ public class GraphHash {
 		
 		//Aurre-baldintza:	Aktore edo Pelikula motako instantzia izango dute parametroak, eta desberdinak izango dira.
 		/*Post-baldinta:	Beraien artean tarteko pelikula eta aktoreak badaude True bueltatuko du,
-							bestela False.
+							bestela False. Parametroren bat null bada, false bueltatuko du.
 		//Kostua: O(n+m)
 			
 			/*Proba kasuak:
@@ -79,50 +79,56 @@ public class GraphHash {
 			 	7. Elementuen artean bi baino gehiagoko konexioa (izen ezberdinekoak) (True).
 			 */
 		
-		Zinematografikoa hasierakoa = pZine1;
-	    Zinematografikoa amaierakoa = pZine2;
-	    Zinematografikoa unekoa 	= hasierakoa;
-	    
-	    
-	    //Stack<Zinematografikoa>		aztertuGabeak		=	new Stack<Zinematografikoa>();
-	    Queue<Zinematografikoa>		aztertuGabeak		=	new LinkedList<Zinematografikoa>();
-	    HashSet<Zinematografikoa>	aztertuak			=	new HashSet<Zinematografikoa>();
-	    
-	    aztertuak.add(unekoa);
-	    aztertuGabeak.add(unekoa);
-	    
-	    boolean topatua		   = false;
-	    boolean instantziaBera = false; //Biak pelikulak edo biak aktoreak diren jakiteko
-	    
-	    while (!topatua && !aztertuGabeak.isEmpty()){
-	    	
-	    	unekoa = aztertuGabeak.remove();
-	    	
-	    	instantziaBera = unekoa.instantziaBerekoak(amaierakoa); //Izen berdina duten pelikula eta aktorea ekiditzeko.
-	    	
-	    	if( unekoa.getIzena().equals(amaierakoa.getIzena()) && instantziaBera ){
-	    		
-	    		topatua	= true;
-	    	}
-	    	
-	    	else{
-	    		
-	    		/*prozesatu( Zinematografikoa pProzesatzekoa, Stack<Zinematografikoa> pAztertuGabeak, 
-		 				Queue<Zinematografikoa> pAztertuak){*/
-	    		
-	    		Iterator<Zinematografikoa>	itr	=	this.grafoa.get(unekoa).iterator(); /*Unekoaren arrayList-aren 
-	    																					iteradorea lortu da*/
-	    		Zinematografikoa unekoarenZerrendakoa = null;
-	    		
-	    		while(itr.hasNext()){
-	    			
-	    			unekoarenZerrendakoa	= itr.next();
-	    			this.prozesatu(unekoarenZerrendakoa, aztertuGabeak, aztertuak);
-	    		}
-	    	}
-
-	    }
-	    
+		boolean topatua		   = false;
+		
+		if((pZine1 != null)&&(pZine2 != null)){
+			
+			
+			Zinematografikoa hasierakoa = pZine1;
+		    Zinematografikoa amaierakoa = pZine2;
+		    Zinematografikoa unekoa 	= hasierakoa;
+		    
+		    
+		    //Stack<Zinematografikoa>		aztertuGabeak		=	new Stack<Zinematografikoa>();
+		    Queue<Zinematografikoa>		aztertuGabeak		=	new LinkedList<Zinematografikoa>();
+		    HashSet<Zinematografikoa>	aztertuak			=	new HashSet<Zinematografikoa>();
+		    
+		    aztertuak.add(unekoa);
+		    aztertuGabeak.add(unekoa);
+		    
+		    
+		    boolean instantziaBera = false; //Biak pelikulak edo biak aktoreak diren jakiteko
+		    
+		    while (!topatua && !aztertuGabeak.isEmpty()){
+		    	
+		    	unekoa = aztertuGabeak.remove();
+		    	
+		    	instantziaBera = unekoa.instantziaBerekoak(amaierakoa); //Izen berdina duten pelikula eta aktorea ekiditzeko.
+		    	
+		    	if( unekoa.getIzena().equals(amaierakoa.getIzena()) && instantziaBera ){
+		    		
+		    		topatua	= true;
+		    	}
+		    	
+		    	else{
+		    		
+		    		/*prozesatu( Zinematografikoa pProzesatzekoa, Stack<Zinematografikoa> pAztertuGabeak, 
+			 				Queue<Zinematografikoa> pAztertuak){*/
+		    		
+		    		Iterator<Zinematografikoa>	itr	=	this.grafoa.get(unekoa).iterator(); /*Unekoaren arrayList-aren 
+		    																					iteradorea lortu da*/
+		    		Zinematografikoa unekoarenZerrendakoa = null;
+		    		
+		    		while(itr.hasNext()){
+		    			
+		    			unekoarenZerrendakoa	= itr.next();
+		    			this.prozesatu(unekoarenZerrendakoa, aztertuGabeak, aztertuak);
+		    		}
+		    	}
+	
+		    }
+		}
+		
 		return topatua;
 	}
 	
