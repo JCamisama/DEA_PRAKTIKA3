@@ -64,19 +64,20 @@ public class GraphHash {
 		//Aurre-baldintza:	Aktore edo Pelikula motako instantzia izango dute parametroak, eta desberdinak izango dira.
 		/*Post-baldinta:	Beraien artean tarteko pelikula eta aktoreak badaude True bueltatuko du,
 							bestela False. Parametroren bat null bada, false bueltatuko du.
-		//Kostua: O(n+m)
+		//Kostua: TO-DO
 			
 			/*Proba kasuak:
 			 
-			 	1. Horietako batek konexiorik ez izatea: Pelikula bat aktorerik gabe edo
-			 	   txertatu den aktore berria pelikularik ez izatea. (False)
-			 	2. Bi elementuek konexiorik ez izatea. (False)
-			 	3. Bi elementuek konexioak izatea, baina elkarren artean konexiorik ez
-			 	   egotea (False)
-			 	4. Elementuen artean konexio bakarra (izen berdineko pelikula eta aktorea) (True)
-			 	5. Elementuen artean konexio bakarra (izen ezberdinekoak) (True)
-			 	6. Elementuen artean bi baino gehiagoko konexioa (izen berdineko pelikula eta aktorea) (True).
-			 	7. Elementuen artean bi baino gehiagoko konexioa (izen ezberdinekoak) (True).
+			 	1.  Elementuak konexiorik ez izatea (fitxategiaren karga eta gero gehitzen direnean) (False)
+			 	2.  Pelikula aktoreak ditu, baina aktorea ez dauka erlaziorik (False)
+			 	3.  Pelikula aktorerik ez izatea (karga eta gero gehitzen bada), baina aktoreak bai (False)
+			 	4.  Elementuak erlazioak dituzte, baina ez bien artean (False)
+			 	5.  Erlazio zuzena (aktorea pelikulan lan egin duenean (True)
+			 	6.  Aktoreen arteko erlazioa (pelikula berean lan egin dute) (True)
+			 	7.  Izen berdineko aktore eta pelikula baten artean erlazioa egotea (True)
+			 	8.  Izen ezberdineko bi elementuen artean erlazioa egotea (True)
+			 	9.  Bi elementuen artean erlazio bat baino gehiago egotea.
+			 	10. Null elementuak sartzerakoan
 			 */
 		
 		boolean topatua		   = false;
@@ -147,6 +148,15 @@ public class GraphHash {
 	 }
 	
 	
+	 public ArrayList<Zinematografikoa> erlazionatuta(Zinematografikoa pZine1, Zinematografikoa pZine2){
+		 
+		 ArrayList<Zinematografikoa> quitaerrores =null;
+		 
+		 
+		 
+		 
+		 return quitaerrores;
+	 }
 	
 	///********************************************FROGAK***********************************///
 	 
