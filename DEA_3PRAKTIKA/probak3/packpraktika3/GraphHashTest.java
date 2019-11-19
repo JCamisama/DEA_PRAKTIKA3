@@ -428,4 +428,11 @@ public class GraphHashTest {
 		
 	}
 
+	
+	@Test
+	public void testErlazionatuta() {
+		
+		
+		
+	}
 }
