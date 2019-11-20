@@ -73,12 +73,12 @@ public class GraphHash {
 			 	2.  Pelikula aktoreak ditu, baina aktorea ez dauka erlaziorik (False)
 			 	3.  Pelikula aktorerik ez izatea (karga eta gero gehitzen bada), baina aktoreak bai (False)
 			 	4.  Elementuak erlazioak dituzte, baina ez bien artean (False)
-			 	5.  Erlazio zuzena (aktorea pelikulan lan egin duenean (True)
+			 	5.  Erlazio zuzena (aktorea pelikulan lan egin duenean) (True)
 			 	6.  Aktoreen arteko erlazioa (pelikula berean lan egin dute) (True)
 			 	7.  Izen berdineko aktore eta pelikula baten artean erlazioa egotea (True)
 			 	8.  Izen ezberdineko bi elementuen artean erlazioa egotea (True)
-			 	9.  Bi elementuen artean erlazio bat baino gehiago egotea.
-			 	10. Null elementuak sartzerakoan
+			 	9.  Bi elementuen artean erlazio bat baino gehiago egotea. (True)
+			 	10. Null elementuak sartzerakoan (False)
 			 */
 		
 		boolean topatua		   = false;
@@ -166,7 +166,7 @@ public class GraphHash {
 			 	2.  Pelikula aktoreak ditu, baina aktorea ez dauka erlaziorik (null)
 			 	3.  Pelikula aktorerik ez izatea (karga eta gero gehitzen bada), baina aktoreak bai (null)
 			 	4.  Elementuak erlazioak dituzte, baina ez bien artean (null)
-			 	5.  Erlazio zuzena (aktorea pelikulan lan egin duenean (Zerrenda)
+			 	5.  Erlazio zuzena (aktorea pelikulan lan egin duenean) (Zerrenda)
 			 	6.  Aktoreen arteko erlazioa (pelikula berean lan egin dute) (Zerrenda)
 			 	7.  Izen berdineko aktore eta pelikula baten artean erlazioa egotea (Zerrenda)
 			 	8.  Izen ezberdineko bi elementuen artean erlazioa egotea (Zerrenda)
