@@ -156,23 +156,24 @@ public class GraphHash {
 		/*Aurre-baldintza:	Aktore edo Pelikula motako instantzia izango dute parametroak, eta desberdinak izango dira.
 		 					Bi elementuak grafoan egongo dira. */
 		/*Post-baldinta:	pZine1-etik pZine2-rainoko erlazioen zerrenda izango da, 2 pertsonen arteko erlazio
-							bakoitzak pelikula berean parte hartu dutela adierazten duelarik. Elementuren bat null bada,
-							null bueltatuko du. Bestela, elementuen artean konexiorik ez badago zerrenda hutsa bueltatuko du.*/
+							bakoitzak pelikula berean parte hartu dutela adierazten duelarik. 
+							Elementuen artean konexiorik ez badago, zerrenda hutsa bueltatuko du.
+							Null elementuren bat sartzen bada, null bueltatuko du.*/
 		//Kostua: TO-DO
 			
 			/*Proba kasuak:
 			 
-			 	1.  Elementuak konexiorik ez izatea (fitxategiaren karga eta gero gehitzen direnean) (null)
-			 	2.  Pelikula aktoreak ditu, baina aktorea ez dauka erlaziorik (null)
-			 	3.  Pelikula aktorerik ez izatea (karga eta gero gehitzen bada), baina aktoreak bai (null)
-			 	4.  Elementuak erlazioak dituzte, baina ez bien artean (null)
-			 	5.  Erlazio zuzena (aktorea pelikulan lan egin duenean (Zerrenda)
-			 	6.  Aktoreen arteko erlazioa (pelikula berean lan egin dute) (Zerrenda)
-			 	7.  Izen berdineko aktore eta pelikula baten artean erlazioa egotea (Zerrenda)
-			 	8.  Izen ezberdineko bi elementuen artean erlazioa egotea (Zerrenda)
+			 	1.  Elementuak konexiorik ez izatea (fitxategiaren karga eta gero gehitzen direnean) (Zerrenda hutsa)
+			 	2.  Pelikula aktoreak ditu, baina aktorea ez dauka erlaziorik (Zerrenda hutsa)
+			 	3.  Pelikula aktorerik ez izatea (karga eta gero gehitzen bada), baina aktoreak bai (Zerrenda hutsa)
+			 	4.  Elementuak erlazioak dituzte, baina ez bien artean (Zerrenda hutsa)
+			 	5.  Erlazio zuzena (aktorea pelikulan lan egin duenean (Zerrenda ez-hutsa)
+			 	6.  Aktoreen arteko erlazioa (pelikula berean lan egin dute) (Zerrenda ez-hutsa)
+			 	7.  Izen berdineko aktore eta pelikula baten artean erlazioa egotea (Zerrenda ez-hutsa)
+			 	8.  Izen ezberdineko bi elementuen artean erlazioa egotea (Zerrenda ez-hutsa)
 			 	9.  Bi elementuen artean bide bat baino gehiago egotea. (Guztiak Luzera berekoak)
 			 	10. Bi elementuen artean bide bat baino gehiago egotea. (Luzera txikiena duen zerrenda)
-			 	11. Bi elementuen arteko bide luzea. (Zerrenda)
+			 	11. Bi elementuen arteko bide luzea. (Zerrenda ez-hutsa)
 			 	12. Null elementuak sartzerakoan.   (null)
 			*/
 		ArrayList<Zinematografikoa> bidea = null; 

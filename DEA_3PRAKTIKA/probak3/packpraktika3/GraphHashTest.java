@@ -4,6 +4,9 @@ import packpraktika1.*;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -14,6 +17,7 @@ public class GraphHashTest {
 	Zinematografikoa aktore1, aktore2, peli1, peli2 = null;	
 	GraphHash gHau;
 	IrakurketakEtaIdazketak cHau;
+	ArrayList<Zinematografikoa> erlazioak;
 
 	@Before
 	public void setUp() throws Exception {
@@ -29,7 +33,8 @@ public class GraphHashTest {
 		
 		gHau.erreseteatuFrogetan();
 		aktore1 = null;		
-		peli1 = null;	
+		peli1 = null;
+		erlazioak = null;
 			
 	}
 
@@ -315,7 +320,7 @@ public class GraphHashTest {
 		 System.out.println("\n\n\n\n");
 		 
 		
-		//5. Elementuen artean bi baino gehiagoko konexioa (izen berdineko pelikula eta aktorea) (True).
+		//5. Erlazio zuzena (aktorea pelikulan lan egin duenean (True).
 			
 		 
 		 
@@ -393,8 +398,7 @@ public class GraphHashTest {
 		 System.out.println("\n\n\n\n");
 		 
 		 
-		/* 9. Bi elementuen artean erlazio bat baino gehiago egotea.
-		 	10. Null elementuak sartzerakoan*/
+	
 		 
 		 //9. Bi elementuen artean erlazio bat baino gehiago egotea. (True)
 		 
@@ -432,7 +436,383 @@ public class GraphHashTest {
 	@Test
 	public void testErlazionatuta() {
 		
+		/*Proba kasuak:
+		 
+	 	1.  Elementuak konexiorik ez izatea (fitxategiaren karga eta gero gehitzen direnean) (Zerrenda hutsa)
+	 	2.  Pelikula aktoreak ditu, baina aktorea ez dauka erlaziorik (Zerrenda hutsa)
+	 	3.  Pelikula aktorerik ez izatea (karga eta gero gehitzen bada), baina aktoreak bai (Zerrenda hutsa)
+	 	4.  Elementuak erlazioak dituzte, baina ez bien artean (Zerrenda hutsa)
+	 	5.  Erlazio zuzena (aktorea pelikulan lan egin duenean (Zerrenda ez-hutsa)
+	 	6.  Aktoreen arteko erlazioa (pelikula berean lan egin dute) (Zerrenda ez-hutsa)
+	 	7.  Izen berdineko aktore eta pelikula baten artean erlazioa egotea (Zerrenda ez-hutsa)
+	 	8.  Izen ezberdineko bi elementuen artean erlazioa egotea (Zerrenda ez-hutsa)
+	 	9.  Bi elementuen artean bide bat baino gehiago egotea. (Guztiak Luzera berekoak)
+	 	10. Bi elementuen artean bide bat baino gehiago egotea. (Luzera txikiena duen zerrenda)
+	 	11. Bi elementuen arteko bide luzea. (Zerrenda ez-hutsa)
+	 	12. Null elementuak sartzerakoan.   (Zerrenda hutsa)
+	*/
 		
+		//1. Elementuak konexiorik ez izatea (fitxategiaren karga eta gero gehitzen direnean) (Zerrenda hutsa)
+		
+		 gHau = GraphHash.getNireGrafoa();
+		 
+		 System.out.println("\t\t\t*******1. Elementuak konexiorik ez izatea (fitxategiaren karga eta gero gehitzen direnean) (Zerrenda hutsa)*******\n");
+		 System.out.println("Filma eta pelikula guztiak irakurriko dira orain:\n\n ");
+		 cHau.fitxategiaIreki("Fitxategiak/Konektatuta.txt");
+		 cHau.fitxategiaIrakurri();
+		 cHau.fitxategiaItxi();
+		 
+
+		 	//Aktoreak aktoreen zerrenda nagusira gehitzen
+		 AktoreGuztiak.getNireAktoreak().gehituAktorea((Aktorea)aktore1); //Santa Claus aktorea gehitu da.
+		 	//Aktorerik gabeko pelikula gehitzen
+		 PelikulaGuztiak.getNirePelikulak().gehituPelikula(new Pelikula("Aktorerik Gabekoa"));
+		 
+		 	//Bilatu nahi dugun pelikula bilatzen
+		 peli2 =  PelikulaGuztiak.getNirePelikulak().pelikulaBilatu("Aktorerik Gabekoa");
+		 
+		 	//Bilatu nahi dugun aktorea bilatzen
+		 aktore2 =  AktoreGuztiak.getNireAktoreak().aktoreaBilatu("Santa Claus");
+		 
+		 
+		 	//Irakurritako aktore eta pelikula kopuruak adierazten
+		 System.out.println("\nAktore kopurua: " + AktoreGuztiak.getNireAktoreak().luzera());
+		 System.out.println("\nPelikula kopurua: " + PelikulaGuztiak.getNirePelikulak().luzera());
+		 
+		 
+		 
+		 gHau.grafoaSortu(AktoreGuztiak.getNireAktoreak(), PelikulaGuztiak.getNirePelikulak());
+		 System.out.println("\nGrafoaren nodo kopurua: " + gHau.size()+"\n\n\n\n");
+		 gHau.grafoaInprimatu();
+		
+		 	//Santa Claus pelikularik ez dituela eta Aktorerik Gabekoa aktorerik ez, 
+		 												//zerrenda hutsa izango da (luzera = 0)
+		 erlazioak = gHau.erlazionatuta(peli2, aktore2);
+		 assertNotNull(erlazioak);
+		 assertEquals(erlazioak.size(), 0);
+		 
+		 
+		 
+		 //2.  Pelikula aktoreak ditu, baina aktorea ez dauka erlaziorik (Zerrenda hutsa)
+			
+		 System.out.println("\t\t\t*******2.  Pelikula aktoreak ditu, baina aktorea ez dauka erlaziorik (Zerrenda hutsa)*******\n");
+		 System.out.println("\n\n\n\n");	 
+		 	//Bilatu nahi dugun pelikula bilatzen
+		 peli2 =  PelikulaGuztiak.getNirePelikulak().pelikulaBilatu("Oceans 11"); //Waltz eta Pitt ditu.
+		 assertEquals("Oceans 11", peli2.getIzena());
+		 
+		 	//Bilatu nahi dugun aktorea bilatzen
+		 aktore2 =  AktoreGuztiak.getNireAktoreak().aktoreaBilatu("Santa Claus"); //Pelikularik ez dauka.	 
+		 assertEquals("Santa Claus", aktore2.getIzena());
+		 
+		 erlazioak = gHau.erlazionatuta(peli2, aktore2);
+		 assertNotNull(erlazioak);
+		 assertEquals(erlazioak.size(), 0);
+ 
+		
+		
+		 
+		 //3.  Pelikula aktorerik ez izatea (karga eta gero gehitzen bada), baina aktoreak bai (Zerrenda hutsa)
+			
+		
+		 
+		 System.out.println("\t\t\t*******3.  Pelikula aktorerik ez izatea (karga eta gero gehitzen bada), baina aktoreak bai (Zerrenda hutsa)*******\n");
+		 System.out.println("\n\n\n\n");	
+		 
+		 	//Bilatu nahi dugun pelikula bilatzen
+		 peli2 =  PelikulaGuztiak.getNirePelikulak().pelikulaBilatu("Aktorerik Gabekoa");
+		 assertEquals("Aktorerik Gabekoa", peli2.getIzena());
+		 
+		 	
+		 aktore2 =  AktoreGuztiak.getNireAktoreak().aktoreaBilatu("Pitt");
+		 assertEquals("Pitt", aktore2.getIzena());
+		 
+		 erlazioak = gHau.erlazionatuta(peli2, aktore2);
+		 assertNotNull(erlazioak);
+		 assertEquals(erlazioak.size(), 0);
+		 	 
+		 System.out.println("\n\n\n\n");
+		 
+		 
+		 
+		 
+		 
+		 //4.  Elementuak erlazioak dituzte, baina ez bien artean (Zerrenda hutsa)
+			
+		 System.out.println("\t\t\t*******4.  Elementuak erlazioak dituzte, baina ez bien artean (Zerrenda hutsa)*******\n");
+			 
+		 	//Bilatu nahi dugun pelikula bilatzen
+		 peli2 =  PelikulaGuztiak.getNirePelikulak().pelikulaBilatu("Random Film");
+		 assertEquals("Random Film", peli2.getIzena());
+		 
+		 	//Bilatu nahi dugun aktorea bilatzen
+		 aktore2 =  AktoreGuztiak.getNireAktoreak().aktoreaBilatu("Pitt");		 
+		 assertEquals("Pitt", aktore2.getIzena());
+		 
+		 erlazioak = gHau.erlazionatuta(peli2, aktore2);
+		 assertNotNull(erlazioak);
+		 assertEquals(erlazioak.size(), 0);
+		 
+		 System.out.println("\n\n\n\n");
+		 
+		 
+		 
+		 
+		 
+		 //5.  Erlazio zuzena (aktorea pelikulan lan egin duenean (Zerrenda ez-hutsa)
+			
+		 System.out.println("\t\t\t*******5.  Erlazio zuzena (aktorea pelikulan lan egin duenean (Zerrenda ez-hutsa)*******\n");
+			 
+		 	//Bilatu nahi dugun pelikula bilatzen
+		 peli2 =  PelikulaGuztiak.getNirePelikulak().pelikulaBilatu("Random Film");
+		 assertEquals("Random Film", peli2.getIzena());
+		 
+		 	//Bilatu nahi dugun aktorea bilatzen
+		 aktore2 =  AktoreGuztiak.getNireAktoreak().aktoreaBilatu("Regular Guy");		 
+		 assertEquals("Regular Guy", aktore2.getIzena());
+		 
+		 erlazioak = gHau.erlazionatuta(peli2, aktore2);
+		 assertNotNull(erlazioak);
+		 assertEquals(erlazioak.size(), 2);
+		 
+		 
+		 Iterator<Zinematografikoa> itr5 = erlazioak.iterator();
+		 System.out.print("Zerrenda: ");
+		 
+		 while (itr5.hasNext()){
+			 
+			 System.out.print("<"+itr5.next().getIzena()+">, ");
+			 //<Random Film>, <Regular Guy>,
+		 }
+		 
+		 
+		 System.out.println("\n\n\n\n");
+		 
+		 
+		 
+		 
+		 
+		 
+		//6.  Aktoreen arteko erlazioa (pelikula berean lan egin dute) (Zerrenda ez-hutsa)
+			
+		 System.out.println("\t\t\t*******6.  Aktoreen arteko erlazioa (pelikula berean lan egin dute) (Zerrenda ez-hutsa)*******\n");
+			 
+			//Bilatu nahi dugun pelikula bilatzen
+		 aktore1 =  AktoreGuztiak.getNireAktoreak().aktoreaBilatu("Ozzy");		 
+		 assertEquals("Ozzy", aktore1.getIzena());
+		 
+		 	//Bilatu nahi dugun aktorea bilatzen
+		 aktore2 =  AktoreGuztiak.getNireAktoreak().aktoreaBilatu("Sergio Ramos");		 
+		 assertEquals("Sergio Ramos", aktore2.getIzena());
+		 
+		 erlazioak = gHau.erlazionatuta(aktore1, aktore2);
+		 assertNotNull(erlazioak);
+		 assertEquals(erlazioak.size(), 3);
+		 
+		 
+		 Iterator<Zinematografikoa> itr6 = erlazioak.iterator();
+		 System.out.print("Zerrenda: ");
+		 
+		 while (itr6.hasNext()){
+			 
+			 System.out.print("<"+itr6.next().getIzena()+">, ");
+			 //<Ozzy>, <Futbolocura>, <Sergio Ramos>,
+		 }
+		 
+		 
+		 System.out.println("\n\n\n\n");
+		 
+		 
+		 
+		 
+	
+		 
+		//7.  Izen berdineko aktore eta pelikula baten artean erlazioa egotea (Zerrenda ez-hutsa)
+			
+		 System.out.println("\t\t\t*******7.  Izen berdineko aktore eta pelikula baten artean erlazioa egotea (Zerrenda ez-hutsa)*******\n");
+			 
+		 	//Bilatu nahi dugun pelikula bilatzen
+		 peli2 =  PelikulaGuztiak.getNirePelikulak().pelikulaBilatu("Sergio Ramos");
+		 assertEquals("Sergio Ramos", peli2.getIzena());
+		 
+		 	//Bilatu nahi dugun aktorea bilatzen
+		 aktore2 =  AktoreGuztiak.getNireAktoreak().aktoreaBilatu("Sergio Ramos");		 
+		 assertEquals("Sergio Ramos", aktore2.getIzena());
+		 
+		 erlazioak = gHau.erlazionatuta(peli2, aktore2);
+		 assertNotNull(erlazioak);
+		 assertEquals(erlazioak.size(), 4);
+		 
+		 
+		 Iterator<Zinematografikoa> itr7 = erlazioak.iterator();
+		 System.out.print("Zerrenda: ");
+		 
+		 while (itr7.hasNext()){
+			 
+			 System.out.print("<"+itr7.next().getIzena()+">, "); 
+			 //<Sergio Ramos(pelikula)>, <Ozzy>, <Futbolocura>, <Sergio Ramos (aktorea)>
+		 }
+		 
+		 
+		 System.out.println("\n\n\n\n");
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		//8.  Izen ezberdineko bi elementuen artean erlazioa egotea (Zerrenda ez-hutsa)
+			
+		 System.out.println("\t\t\t*******8.  Izen ezberdineko bi elementuen artean erlazioa egotea (Zerrenda ez-hutsa)*******\n");
+			 
+		 	//Bilatu nahi dugun pelikula bilatzen
+		 peli2 =  PelikulaGuztiak.getNirePelikulak().pelikulaBilatu("Villains");
+		 assertEquals("Villains", peli2.getIzena());
+		 
+		 	//Bilatu nahi dugun aktorea bilatzen
+		 aktore2 =  AktoreGuztiak.getNireAktoreak().aktoreaBilatu("Madrileko1");		 
+		 assertEquals("Madrileko1", aktore2.getIzena());
+		 
+		 erlazioak = gHau.erlazionatuta(peli2, aktore2);
+		 assertNotNull(erlazioak);
+		 assertEquals(erlazioak.size(), 6);
+		 
+		 
+		 Iterator<Zinematografikoa> itr8 = erlazioak.iterator();
+		 System.out.print("Zerrenda: ");
+		 
+		 while (itr8.hasNext()){
+			 
+			 System.out.print("<"+itr8.next().getIzena()+">, ");
+			 //<Villains>, <Nicholson>, <Shining>, <Ozzy>, <Sergio Ramos>, <Madrileko1>,
+		 }
+		 
+		 
+		 System.out.println("\n\n\n\n");
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 //9.  Bi elementuen artean bide bat baino gehiago egotea. (Guztiak Luzera berekoak)
+			
+		 System.out.println("\t\t\t*******9.  Bi elementuen artean bide bat baino gehiago egotea. (Guztiak Luzera berekoak)*******\n");
+			 
+		 	//Bilatu nahi dugun pelikula bilatzen
+		 aktore1 =  AktoreGuztiak.getNireAktoreak().aktoreaBilatu("Waltz");		 
+		 assertEquals("Waltz", aktore1.getIzena());
+		 
+		 	//Bilatu nahi dugun aktorea bilatzen
+		 aktore2 =  AktoreGuztiak.getNireAktoreak().aktoreaBilatu("Pitt");		 
+		 assertEquals("Pitt", aktore2.getIzena());
+		 
+		 erlazioak = gHau.erlazionatuta(aktore1, aktore2);
+		 assertNotNull(erlazioak);
+		 assertEquals(erlazioak.size(), 3);
+		 
+		 
+		 Iterator<Zinematografikoa> itr9 = erlazioak.iterator();
+		 System.out.print("Zerrenda: ");
+		 
+		 while (itr9.hasNext()){
+			 
+			 System.out.print("<"+itr9.next().getIzena()+">, ");
+			 //<Waltz>, <Oceans 11>, <Pitt>,   edo   <Waltz>, <Bastards>, <Pitt>,
+		 }
+		 
+		 
+		 System.out.println("\n\n\n\n");
+		 
+		 
+		 
+		 
+		 
+		 
+		//10. Bi elementuen artean bide bat baino gehiago egotea. (Luzera txikiena duen zerrenda)
+			
+		 System.out.println("\t\t\t*******10. Bi elementuen artean bide bat baino gehiago egotea. (Luzera txikiena duen zerrenda)*******\n");
+			 
+			//Bilatu nahi dugun pelikula bilatzen
+		 peli2 =  PelikulaGuztiak.getNirePelikulak().pelikulaBilatu("Shining");
+		 assertEquals("Shining", peli2.getIzena());
+		 
+		 	//Bilatu nahi dugun aktorea bilatzen
+		 aktore2 =  AktoreGuztiak.getNireAktoreak().aktoreaBilatu("Pitt");		 
+		 assertEquals("Pitt", aktore2.getIzena());
+		 
+		 erlazioak = gHau.erlazionatuta(aktore2, peli2);
+		 assertNotNull(erlazioak);
+		 assertEquals(erlazioak.size(), 4);
+		 
+		 
+		 Iterator<Zinematografikoa> itr10 = erlazioak.iterator();
+		 System.out.print("Zerrenda: ");
+		 
+		 while (itr10.hasNext()){
+			 
+			 System.out.print("<"+itr10.next().getIzena()+">, ");
+			 //<Pitt>, <Fight Club>, <Sekundario 1>, <Shining>,
+		 }
+		 
+		 
+		 System.out.println("\n\n\n\n");
+		 
+		 
+		 
+		 
+		 //11. Bi elementuen arteko bide luzea. (Zerrenda ez-hutsa)
+			
+		 System.out.println("\t\t\t*******11. Bi elementuen arteko bide luzea. (Zerrenda ez-hutsa)*******\n");
+			 
+			//Bilatu nahi dugun pelikula bilatzen
+		 peli2 =  PelikulaGuztiak.getNirePelikulak().pelikulaBilatu("Jonportena");
+		 assertEquals("Jonportena", peli2.getIzena());
+		 
+		 	//Bilatu nahi dugun aktorea bilatzen
+		 aktore2 =  AktoreGuztiak.getNireAktoreak().aktoreaBilatu("Jonport");		 
+		 assertEquals("Jonport", aktore2.getIzena());
+		 
+		 erlazioak = gHau.erlazionatuta(aktore2, peli2);
+		 assertNotNull(erlazioak);
+		 assertEquals(erlazioak.size(), 12);
+		 
+		 
+		 Iterator<Zinematografikoa> itr11 = erlazioak.iterator();
+		 System.out.print("Zerrenda: ");
+		 
+		 while (itr11.hasNext()){
+			 
+			 System.out.print("<"+itr11.next().getIzena()+">, ");
+			 //<Jonport>, <Taxi stuff>, <Ricardo>, <Troya>, <Pitt>,
+			 //   <Fight Club>, <Sekundario 1>, <Shining>, <Ozzy>, <Futbolocura>, <Sergio Ramos>, <Jonportena>,
+		 }
+		 
+		 
+		 System.out.println("\n\n\n\n");
+		 
+		 
+		 
+		 //12. Null elementuak sartzerakoan.   (null)
+			
+		 System.out.println("\t\t\t*******12. Null elementuak sartzerakoan.   (null)*******\n");
+			 
+		
+		 peli2 =  null;
+		 aktore2 =  null;		 
+		
+		 
+		 erlazioak = gHau.erlazionatuta(aktore2, peli2);
+		 assertNull(erlazioak);
+		 
+		 
+		 
+		 System.out.println("\n\n\n\n");
+	
 		
 	}
 }
