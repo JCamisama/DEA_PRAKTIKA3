@@ -20,7 +20,7 @@ public abstract class Zinematografikoa {
 		
 		//Aurre-baldintza:	Klasekoa eta parametroa edo Aktorea edo Pelikula izango dira.
 		//Post-baldinta:	Biak pelikulak edo biak aktoreak badira true, bestela false.
-		//Kostua: O(n)
+		//Kostua: O(1)
 		
 		/*Proba Kasuak
 		 	 	
