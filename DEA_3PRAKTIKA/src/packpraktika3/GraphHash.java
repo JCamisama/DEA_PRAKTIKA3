@@ -336,7 +336,8 @@ public class GraphHash {
 	
 	public Zinematografikoa[] elementuenArrayaLortu(){ //probak egoteko metodoa
 		
-		Zinematografikoa[] ausazkorako = (Zinematografikoa[]) this.grafoa.keySet().toArray();
+		//String[] strings = map.keySet().toArray(new String[map.size()]);
+		Zinematografikoa[] ausazkorako = this.grafoa.keySet().toArray(new Zinematografikoa[this.grafoa.size()]);
 		
 		return ausazkorako;
 		
