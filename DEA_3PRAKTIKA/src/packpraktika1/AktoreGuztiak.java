@@ -158,4 +158,30 @@ public class AktoreGuztiak {
 		}
 		
 	}
+	
+	/****************************************batazBestekorako Pelikulak*********************************************/
+	
+	public int batazbestekoPelikulak() {
+		
+		int emaitza = 0;
+		int gehiketa = 0;
+		
+		Iterator<Aktorea> itr		= AktoreGuztiak.getNireAktoreak().getAktoreenIteradorea(); //Aktoreen zerrenda bat sortzen
+		Aktorea			  aktoreHau	= null;
+		
+		while (itr.hasNext()) {
+			
+			aktoreHau = itr.next();
+			gehiketa = gehiketa + aktoreHau.pelikulenListarenLuzeera();
+			
+		}
+		
+		emaitza = gehiketa / this.luzera();
+		
+		return emaitza;
+		
+	}
+	
+	
+	
 }

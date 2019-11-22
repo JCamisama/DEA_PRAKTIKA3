@@ -87,7 +87,7 @@ public class PelikulaGuztiak {
 		//Kostua: O(n)
 		
 		ArrayList<Zinematografikoa> pelikulak = this.zerrenda.grafokoZerrendaSortu();
-		Iterator<Zinematografikoa>	itr		  = pelikulak.iterator(); //Aktoreen zerrenda bat sortzen
+		Iterator<Zinematografikoa>	itr		  = pelikulak.iterator(); //Pelikuleen zerrenda bat sortzen
 		Pelikula					peliHau   = null;
 		
 		//Grafoaren elementuen zerrenda egiteko beharko den ArrayList-a
