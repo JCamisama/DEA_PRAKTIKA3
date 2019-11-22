@@ -47,10 +47,11 @@ public class GraphHash {
 		 	4. Aktore bakarra eta Pelikula bakarra.
 		 	5. Aktoreen zerrenda eta pelikulen zerrenda beteta.
 		 */
-		
-		
+		System.out.println("\nGrafoa sortuko da orain");
+		Stopwatch kronometroa = new Stopwatch();
 		lAktoreak.grafoaOsatu();
 		lPelikulak.grafoaOsatu();
+		System.out.println("\nTardatutako denbora: "+kronometroa.elapsedTime()+" segundu.");
 	}
 	
 	public void gehitu(Zinematografikoa pGiltza, ArrayList<Zinematografikoa> pZerrenda){
@@ -319,6 +320,15 @@ public class GraphHash {
 			} 
 			System.out.println();
 		}
+	}
+	
+	
+	public Zinematografikoa[] elementuenArrayaLortu(){ //probak egoteko metodoa
+		
+		Zinematografikoa[] ausazkorako = (Zinematografikoa[]) this.grafoa.keySet().toArray();
+		
+		return ausazkorako;
+		
 	}
 	
 

@@ -815,4 +815,51 @@ public class GraphHashTest {
 	
 		
 	}
+
+
+	@Test
+	
+	public void testGragoaSortuExperimentala(){
+		
+		
+		gHau = GraphHash.getNireGrafoa();
+		 
+		 System.out.println("\t\t\t*******Probak Fitxategi Nagusiarekin (Empirikoak)*******\n");
+		 System.out.println("Filma eta pelikula guztiak irakurriko dira orain:\n\n ");
+		 cHau.fitxategiaIreki("Fitxategiak/FilmsActors20162017.txt");
+		 cHau.fitxategiaIrakurri();
+		 cHau.fitxategiaItxi();
+		 
+		 //Irakurritako aktore eta pelikula kopuruak adierazten
+		 System.out.println("\nAktore kopurua: " + AktoreGuztiak.getNireAktoreak().luzera());
+		 System.out.println("\nPelikula kopurua: " + PelikulaGuztiak.getNirePelikulak().luzera());
+		 
+		 
+		 
+		 gHau.grafoaSortu(AktoreGuztiak.getNireAktoreak(), PelikulaGuztiak.getNirePelikulak());
+		 System.out.println("\nGrafoaren nodo kopurua: " + gHau.size()+"\n\n\n\n");
+		 //gHau.grafoaInprimatu();
+		 
+		 gHau.erreseteatuFrogetan();
+		
+		
+		
+		
+		
+		/*
+		for (i 1..n)
+				a =random();
+				b=random();
+				
+				if a!= b
+						konektatuta(a,b);//edo erlazionatuta
+						
+						
+						
+						denbora maximoa, denbora minimoa eta batezbestekoa
+						*/
+	}
+	
+	
 }
+
