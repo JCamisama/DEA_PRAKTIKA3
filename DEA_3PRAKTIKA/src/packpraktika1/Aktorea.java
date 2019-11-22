@@ -84,6 +84,14 @@ public class Aktorea extends Zinematografikoa{
 		this.starringPelikula.ezabatuPelikulaHauetatik(this);
 		this.starringPelikula.garbitu();
 	}
+	
+	/****************************************batazBestekorako*********************************************/
+	
+	public int pelikulenListarenLuzeera(){
+		
+		return this.starringPelikula.luzera();
+		
+	}
 		
 	
 }
