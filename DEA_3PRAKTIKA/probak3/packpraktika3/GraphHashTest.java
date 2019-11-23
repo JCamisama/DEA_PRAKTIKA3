@@ -450,7 +450,7 @@ public class GraphHashTest {
 	 	9.  Bi elementuen artean bide bat baino gehiago egotea. (Guztiak Luzera berekoak)
 	 	10. Bi elementuen artean bide bat baino gehiago egotea. (Luzera txikiena duen zerrenda)
 	 	11. Bi elementuen arteko bide luzea. (Zerrenda ez-hutsa)
-	 	12. Null elementuak sartzerakoan.   (Zerrenda hutsa)
+	 	12. Null elementuak sartzerakoan.   (null)
 	*/
 		
 		//1. Elementuak konexiorik ez izatea (fitxategiaren karga eta gero gehitzen direnean) (Zerrenda hutsa)

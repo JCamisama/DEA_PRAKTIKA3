@@ -164,8 +164,7 @@ public class GraphHash {
 			
 			/*Proba kasuak:
 			 
-<<<<<<< HEAD
-			 	1.  Elementuak konexiorik ez izatea (fitxategiaren karga eta gero gehitzen direnean) (Zerrenda hutsa)
+				1.  Elementuak konexiorik ez izatea (fitxategiaren karga eta gero gehitzen direnean) (Zerrenda hutsa)
 			 	2.  Pelikula aktoreak ditu, baina aktorea ez dauka erlaziorik (Zerrenda hutsa)
 			 	3.  Pelikula aktorerik ez izatea (karga eta gero gehitzen bada), baina aktoreak bai (Zerrenda hutsa)
 			 	4.  Elementuak erlazioak dituzte, baina ez bien artean (Zerrenda hutsa)
@@ -173,16 +172,6 @@ public class GraphHash {
 			 	6.  Aktoreen arteko erlazioa (pelikula berean lan egin dute) (Zerrenda ez-hutsa)
 			 	7.  Izen berdineko aktore eta pelikula baten artean erlazioa egotea (Zerrenda ez-hutsa)
 			 	8.  Izen ezberdineko bi elementuen artean erlazioa egotea (Zerrenda ez-hutsa)
-=======
-			 	1.  Elementuak konexiorik ez izatea (fitxategiaren karga eta gero gehitzen direnean) (null)
-			 	2.  Pelikula aktoreak ditu, baina aktorea ez dauka erlaziorik (null)
-			 	3.  Pelikula aktorerik ez izatea (karga eta gero gehitzen bada), baina aktoreak bai (null)
-			 	4.  Elementuak erlazioak dituzte, baina ez bien artean (null)
-			 	5.  Erlazio zuzena (aktorea pelikulan lan egin duenean) (Zerrenda)
-			 	6.  Aktoreen arteko erlazioa (pelikula berean lan egin dute) (Zerrenda)
-			 	7.  Izen berdineko aktore eta pelikula baten artean erlazioa egotea (Zerrenda)
-			 	8.  Izen ezberdineko bi elementuen artean erlazioa egotea (Zerrenda)
->>>>>>> branch 'master' of https://github.com/JCamisama/DEA_PRAKTIKA3.git
 			 	9.  Bi elementuen artean bide bat baino gehiago egotea. (Guztiak Luzera berekoak)
 			 	10. Bi elementuen artean bide bat baino gehiago egotea. (Luzera txikiena duen zerrenda)
 			 	11. Bi elementuen arteko bide luzea. (Zerrenda ez-hutsa)
