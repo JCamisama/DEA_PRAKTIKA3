@@ -1056,5 +1056,44 @@ public class GraphHashTest {
 			 gHau.erreseteatuFrogetan();
 	
 	}
+	
+	
+	/****************************************batazBestekorako*********************************************/	
+		
+	
+	@Test
+		
+		public void testBatazBestekoaPelikulak(){
+			
+			
+			gHau = GraphHash.getNireGrafoa();
+			AktoreGuztiak aktoreHau = AktoreGuztiak.getNireAktoreak();
+			 
+			 System.out.println("\t\t\t*******Probak Fitxategi Nagusiarekin (Empirikoak)*******\n");
+			 System.out.println("Filma eta pelikula guztiak irakurriko dira orain:\n\n ");
+			 cHau.fitxategiaIreki("Fitxategiak/FilmsActors20162017.txt");
+			 cHau.fitxategiaIrakurri();
+			 cHau.fitxategiaItxi();
+			 
+			 //Irakurritako aktore eta pelikula kopuruak adierazten
+			 System.out.println("\nAktore kopurua: " + AktoreGuztiak.getNireAktoreak().luzera());
+			 System.out.println("\nPelikula kopurua: " + PelikulaGuztiak.getNirePelikulak().luzera());
+			 
+			 
+			 
+			 gHau.grafoaSortu(AktoreGuztiak.getNireAktoreak(), PelikulaGuztiak.getNirePelikulak());
+			 System.out.println("\nGrafoaren nodo kopurua: " + gHau.size()+"\n\n\n\n");
+			 System.out.println("\nGrafoaren Aktoreen pelikuleen bataz bestekoa: " + aktoreHau.batazbestekoPelikulak()+"\n\n\n\n");
+			 //gHau.grafoaInprimatu();
+			 
+			 gHau.erreseteatuFrogetan();
+		}
+	
+	
+	
+	
+	
+	
+	
 
 }
