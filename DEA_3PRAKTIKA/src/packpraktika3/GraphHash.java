@@ -283,31 +283,6 @@ public class GraphHash {
 		
 		return this.grafoa.size();
 	}
-	public static void main(String[] args){
-		
-		 IrakurketakEtaIdazketak cHau = new IrakurketakEtaIdazketak(); //Klase honetako metodoei deia egiteko: claseHau
-		 GraphHash				 gHau = GraphHash.getNireGrafoa();
-		// Scanner sarrera	= new Scanner(System.in);
-		// boolean jarraitu	= true;
-
-		 int aukera;
-	//	 "Fitxategiak/Murriztuta.txt";
-		 System.out.println("\t\t\t*******FILMAK ETA AKTOREAK - PRAKTIKA 1*******\n");
-		 System.out.println("Filma eta pelikula guztiak irakurriko dira orain:\n\n ");
-		 cHau.fitxategiaIreki("Fitxategiak/Murriztuta.txt");
-		 cHau.fitxategiaIrakurri();
-		 cHau.fitxategiaItxi();
-		 
-		 //Irakurritako aktore eta pelikula kopuruak adierazten
-		 System.out.println("\nAktore kopurua: " + AktoreGuztiak.getNireAktoreak().luzera());
-		 System.out.println("\nPelikula kopurua: " + PelikulaGuztiak.getNirePelikulak().luzera());
-		 
-		 
-		 
-		 gHau.grafoaSortu(AktoreGuztiak.getNireAktoreak(), PelikulaGuztiak.getNirePelikulak());
-		 System.out.println("\nGrafoaren nodo kopurua: " + gHau.size()+"\n\n");
-		 gHau.grafoaInprimatu();
-	}
 	
 	
 	public void grafoaInprimatu(){

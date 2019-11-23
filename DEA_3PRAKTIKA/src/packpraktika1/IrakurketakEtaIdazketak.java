@@ -337,7 +337,7 @@ public class IrakurketakEtaIdazketak {
 	
 	
 	/***************************************PROGRAMA OSOA PROBATZEKO METODO NAGUSIA****************************************/
-	/*public static void main(String[] args){
+	public static void main(String[] args){
 		
 		 IrakurketakEtaIdazketak cHau = new IrakurketakEtaIdazketak(); //Klase honetako metodoei deia egiteko: claseHau
 	
@@ -348,7 +348,7 @@ public class IrakurketakEtaIdazketak {
 		 
 		 System.out.println("\t\t\t*******FILMAK ETA AKTOREAK - PRAKTIKA 1*******\n");
 		 System.out.println("Filma eta pelikula guztiak irakurriko dira orain:\n\n ");
-		 cHau.fitxategiaIreki();
+		 cHau.fitxategiaIreki("Fitxategiak/FilmsActors20162017.txt");
 		 cHau.fitxategiaIrakurri();
 		 cHau.fitxategiaItxi();
 		 

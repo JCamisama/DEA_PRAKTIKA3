@@ -885,7 +885,7 @@ public class GraphHashTest {
 		 Zinematografikoa zine2  = null;
 		 int 			  a		 = 0;
 		 int			  b		 = 0;
-		 int			  probak = 100;
+		 int			  probak = 1000;
 		 
 		 //Batez-besteko denbora, maximoa eta minimoa
 		 double hartuta = 0.00;
@@ -985,7 +985,7 @@ public class GraphHashTest {
 		 Zinematografikoa zine2  = null;
 		 int 			  a		 = 0;
 		 int			  b		 = 0;
-		 int			  probak = 5;
+		 int			  probak = 1000;
 		 
 		 //Batez-besteko denbora, maximoa eta minimoa
 		 double hartuta = 0.00;
