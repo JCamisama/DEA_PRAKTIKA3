@@ -79,7 +79,7 @@ public class Aktorea extends Zinematografikoa{
 		return this.starringPelikula;
 	}
 	
-	public void ezabatuBerePelikuletatik(){//METODO BERRIA, JUNIT BEHAR DU
+	public void ezabatuBerePelikuletatik(){
 		
 		this.starringPelikula.ezabatuPelikulaHauetatik(this);
 		this.starringPelikula.garbitu();

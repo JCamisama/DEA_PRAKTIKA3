@@ -1063,7 +1063,7 @@ public class GraphHashTest {
 	
 	@Test
 		
-		public void testBatazBestekoaPelikulak(){
+		public void testBatazBestekoaAktoreenPelikulak(){
 			
 			
 			gHau = GraphHash.getNireGrafoa();
